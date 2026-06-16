@@ -93,6 +93,7 @@ jobs:
         working-directory: registry
         run: |
           set -euo pipefail
+          mkdir -p "$(dirname "${{ steps.target.outputs.registry_openapi }}")"
           cp "../source/${{ steps.target.outputs.source_openapi }}" "${{ steps.target.outputs.registry_openapi }}"
           ../tooling/scripts/validate-openapi.sh "${{ steps.target.outputs.registry_openapi }}"
 

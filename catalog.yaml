@@ -5,17 +5,22 @@ metadata:
 
 services:
   - name: software-package-server
-    owner: package-team
+    title: Software Package Server API
+    owner: infra-package-team
     enabled: true
+    tags:
+      - package
+      - openeuler
+      - apig
     communities:
       - name: openeuler
-        owner: openeuler-infra-team
+        owner: infra-package-team
         enabled: true
         source:
-          repo: https://github.com/opensourceways/software-package-server
+          repo: opensourceways/software-package-server
           # Production OpenAPI source branch for this community.
           branch: main
-          openapi: docs/openapi.openeuler.yaml
+          openapi: apig/openAPI.yaml
         registry:
           openapi: services/software-package-server/communities/openeuler/openapi.yaml
           apig: services/software-package-server/communities/openeuler/apig.yaml

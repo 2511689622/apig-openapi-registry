@@ -33,7 +33,7 @@ It stores reviewed registry copies of service OpenAPI files and APIG import targ
 The service repository owns the source OpenAPI file, for example:
 
 ```text
-software-package-server/docs/openapi.openeuler.yaml
+software-package-server/apig/openAPI.yaml
 ```
 
 Service owners maintain API paths, schemas, auth, backend definitions, and Huawei APIG OpenAPI extensions.
@@ -62,17 +62,22 @@ metadata:
 
 services:
   - name: software-package-server
-    owner: package-team
+    title: Software Package Server API
+    owner: infra-package-team
     enabled: true
+    tags:
+      - package
+      - openeuler
+      - apig
     communities:
       - name: openeuler
-        owner: openeuler-infra-team
+        owner: infra-package-team
         enabled: true
         source:
-          repo: https://github.com/opensourceways/software-package-server
+          repo: opensourceways/software-package-server
           # Production OpenAPI source branch for this community.
           branch: main
-          openapi: docs/openapi.openeuler.yaml
+          openapi: apig/openAPI.yaml
         registry:
           openapi: services/software-package-server/communities/openeuler/openapi.yaml
           apig: services/software-package-server/communities/openeuler/apig.yaml
@@ -94,7 +99,7 @@ Payload example:
   "community": "openeuler",
   "repo": "opensourceways/software-package-server",
   "ref": "<commit-sha>",
-  "openapi": "docs/openapi.openeuler.yaml"
+  "openapi": "apig/openAPI.yaml"
 }
 ```
 

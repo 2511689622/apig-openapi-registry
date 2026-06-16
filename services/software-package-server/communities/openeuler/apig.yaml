@@ -3,9 +3,9 @@ community: openeuler
 
 importTarget:
   region: cn-north-4
-  projectId: "${HUAWEICLOUD_PROJECT_ID}"
-  instanceId: "${APIG_INSTANCE_ID}"
-  groupId: "${OPENEULER_SOFTWARE_PACKAGE_SERVER_APIG_GROUP_ID}"
+  projectId: 25f40abeecb84d3e90731de258ca71ec
+  instanceId: 2c2f130914a342b2a937fb92c7c23bd8
+  groupId: b0165579ab244aa69546b365e41a4ad3
   apiMode: merge
   extendMode: merge
 
