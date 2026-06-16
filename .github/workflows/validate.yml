@@ -1,0 +1,60 @@
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - 'catalog.yaml'
+      - 'services/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  TOOLING_REPOSITORY: 2511689622/apig-registry-tooling
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout registry
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: registry
+
+      - name: Checkout tooling
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.TOOLING_REPOSITORY }}
+          path: tooling
+          token: ${{ secrets.TOOLING_REPO_TOKEN || github.token }}
+
+      - name: Install Python YAML dependency
+        run: python -m pip install pyyaml
+
+      - name: Validate changed targets
+        working-directory: registry
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            base="origin/${{ github.base_ref }}"
+            targets="$(../tooling/scripts/changed-targets.sh "$base")"
+          else
+            targets="$(../tooling/scripts/catalog-targets.py)"
+          fi
+
+          if [[ -z "$targets" ]]; then
+            echo "No registry target changes detected."
+            exit 0
+          fi
+
+          while read -r service community; do
+            openapi="$(../tooling/scripts/target-paths.py "$service" "$community" openapi)"
+            apig="$(../tooling/scripts/target-paths.py "$service" "$community" apig)"
+            test -f "$openapi"
+            test -f "$apig"
+            ../tooling/scripts/validate-openapi.sh "$openapi"
+            ../tooling/scripts/validate-apig-config.sh "$apig"
+          done <<< "$targets"

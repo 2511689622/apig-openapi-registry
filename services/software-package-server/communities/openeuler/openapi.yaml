@@ -1,0 +1,778 @@
+openapi: 3.0.3
+info:
+    description: Huawei Cloud APIG import definition for openEuler Software Package Server. All APIs are backend by a single FunctionGraph function for routing.
+    title: software-package-server
+    version: "2026-06-08"
+servers:
+    - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+paths:
+    /v1/cla:
+        get:
+            operationId: API_verifyCla
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/sig:
+        get:
+            operationId: API_listSigs
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg:
+        get:
+            operationId: API_listSoftwarePackages
+            parameters:
+                - in: query
+                  name: phase
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: pkg_name
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: importer
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: platform
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: last_id
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: count
+                  schema:
+                    type: boolean
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: page_num
+                  schema:
+                    type: integer
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: count_per_page
+                  schema:
+                    type: integer
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: QUERY
+                      name: phase
+                      origin: REQUEST
+                      value: phase
+                    - in: QUERY
+                      name: pkg_name
+                      origin: REQUEST
+                      value: pkg_name
+                    - in: QUERY
+                      name: importer
+                      origin: REQUEST
+                      value: importer
+                    - in: QUERY
+                      name: platform
+                      origin: REQUEST
+                      value: platform
+                    - in: QUERY
+                      name: last_id
+                      origin: REQUEST
+                      value: last_id
+                    - in: QUERY
+                      name: count
+                      origin: REQUEST
+                      value: count
+                    - in: QUERY
+                      name: page_num
+                      origin: REQUEST
+                      value: page_num
+                    - in: QUERY
+                      name: count_per_page
+                      origin: REQUEST
+                      value: count_per_page
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+        post:
+            operationId: API_applyNewSoftwarePackage
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/SoftwarePkgRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}:
+        get:
+            operationId: API_getSoftwarePackage
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: language
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                    - in: QUERY
+                      name: language
+                      origin: REQUEST
+                      value: language
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+        put:
+            operationId: API_updateSoftwarePackageApplication
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateSoftwarePkgRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}/close:
+        put:
+            operationId: API_closeSoftwarePackage
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CloseSoftwarePkgRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}/retest:
+        put:
+            operationId: API_rerunSoftwarePackageCi
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}/review:
+        get:
+            operationId: API_getSoftwarePackageUserReview
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: query
+                  name: language
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                    - in: QUERY
+                      name: language
+                      origin: REQUEST
+                      value: language
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+        post:
+            operationId: API_reviewSoftwarePackage
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ReviewRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}/review/comment:
+        get:
+            operationId: API_listSoftwarePackageReviewComments
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+        post:
+            operationId: API_createSoftwarePackageReviewComment
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ReviewCommentRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/{id}/review/comment/{cid}/translate:
+        post:
+            operationId: API_translateSoftwarePackageReviewComment
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+                - in: path
+                  name: cid
+                  required: true
+                  schema:
+                    type: string
+                  x-apigateway-orchestrations: []
+                  x-apigateway-pass-through: always
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/TranslationCommentRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                parameters:
+                    - in: PATH
+                      name: id
+                      origin: REQUEST
+                      value: id
+                    - in: PATH
+                      name: cid
+                      origin: REQUEST
+                      value: cid
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/applyinfo:
+        get:
+            operationId: API_getSoftwarePackageApplyInfo
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+    /v1/softwarepkg/committers:
+        post:
+            operationId: API_checkSoftwarePackageCommitters
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/SoftwarePkgRepoRequest'
+                required: true
+            responses:
+                default:
+                    description: response example
+                    x-apigateway-result-failure-sample: ""
+                    x-apigateway-result-normal-sample: ""
+            security:
+                - apig-auth-custom: []
+            servers:
+                - url: https://0e3c89f33cc14120b0bbf02e2ae0143a.apic.ap-southeast-1.huaweicloudapis.com
+            x-apigateway-backend:
+                functionEndpoints:
+                    function-urn: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth:latest
+                    invocation-type: sync
+                    network-type: V1
+                    timeout: 30000
+                    version: latest
+                type: FUNCTION
+            x-apigateway-cors: false
+            x-apigateway-is-send-fg-body-base64: true
+            x-apigateway-match-mode: NORMAL
+            x-apigateway-request-type: public
+components:
+    responses:
+        default:
+            description: response example
+            x-apigateway-result-failure-sample: ""
+            x-apigateway-result-normal-sample: ""
+    securitySchemes:
+        apig-auth-app:
+            in: header
+            name: Authorization
+            type: apiKey
+            x-apigateway-auth-type: AppSigv1
+        apig-auth-app-header:
+            in: header
+            name: Authorization
+            type: apiKey
+            x-apigateway-auth-opt:
+                appcode-auth-type: header
+            x-apigateway-auth-type: AppSigv1
+        apig-auth-iam:
+            in: header
+            name: unused
+            type: apiKey
+            x-apigateway-auth-type: IAM
+        apig-auth-custom:
+            in: header
+            name: Authorization
+            type: apiKey
+            x-apigateway-auth-type: Custom
+            x-apigateway-authorizer:
+                auth_downgrade_enabled: false
+                authorizer_alias_uri: ''
+                authorizer_type: FUNC
+                authorizer_uri: urn:fss:cn-north-4:25f40abeecb84d3e90731de258ca71ec:function:default:custom-auth
+                authorizer_version: latest
+                identities:
+                    - location: HEADER
+                      name: Authorization
+                      validation: ''
+                need_body: false
+                network_type: V1
+                retry_attempts: 0
+                timeout: 5000
+                ttl: 60
+                type: FRONTEND
+    schemas:
+        CheckItemReviewInfo:
+            type: object
+            required:
+                - id
+            properties:
+                comment:
+                    type: string
+                id:
+                    type: string
+                pass:
+                    type: boolean
+        CloseSoftwarePkgRequest:
+            type: object
+            properties:
+                comment:
+                    type: string
+        ReviewCommentRequest:
+            type: object
+            required:
+                - comment
+            properties:
+                comment:
+                    type: string
+        ReviewRequest:
+            type: object
+            required:
+                - reviews
+            properties:
+                reviews:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CheckItemReviewInfo'
+        SoftwarePkgRepoRequest:
+            type: object
+            required:
+                - repo_link
+            properties:
+                committers:
+                    type: array
+                    items:
+                        type: string
+                repo_link:
+                    type: string
+        SoftwarePkgRequest:
+            type: object
+            required:
+                - pkg_name
+                - desc
+                - reason
+                - upstream
+                - spec_url
+                - src_rpm_url
+                - sig
+                - branch
+                - repo_link
+            properties:
+                branch:
+                    type: string
+                committers:
+                    type: array
+                    items:
+                        type: string
+                desc:
+                    type: string
+                pkg_name:
+                    type: string
+                reason:
+                    type: string
+                repo_link:
+                    type: string
+                sig:
+                    type: string
+                spec_url:
+                    type: string
+                src_rpm_url:
+                    type: string
+                upstream:
+                    type: string
+        TranslationCommentRequest:
+            type: object
+            properties:
+                language:
+                    type: string
+        UpdateSoftwarePkgRequest:
+            type: object
+            properties:
+                branch:
+                    type: string
+                committers:
+                    type: array
+                    items:
+                        type: string
+                desc:
+                    type: string
+                reason:
+                    type: string
+                repo_link:
+                    type: string
+                sig:
+                    type: string
+                spec_url:
+                    type: string
+                src_rpm_url:
+                    type: string
+                upstream:
+                    type: string

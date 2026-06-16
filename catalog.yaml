@@ -1,0 +1,21 @@
+apiVersion: infra.example.com/v1
+kind: ApigCatalog
+metadata:
+  name: infra-apig-catalog
+
+services:
+  - name: software-package-server
+    owner: package-team
+    enabled: true
+    communities:
+      - name: openeuler
+        owner: openeuler-infra-team
+        enabled: true
+        source:
+          repo: https://github.com/opensourceways/software-package-server
+          # Production OpenAPI source branch for this community.
+          branch: main
+          openapi: docs/openapi.openeuler.yaml
+        registry:
+          openapi: services/software-package-server/communities/openeuler/openapi.yaml
+          apig: services/software-package-server/communities/openeuler/apig.yaml

@@ -1,0 +1,14 @@
+service: software-package-server
+community: openeuler
+
+importTarget:
+  region: cn-north-4
+  projectId: "${HUAWEICLOUD_PROJECT_ID}"
+  instanceId: "${APIG_INSTANCE_ID}"
+  groupId: "${OPENEULER_SOFTWARE_PACKAGE_SERVER_APIG_GROUP_ID}"
+  apiMode: merge
+  extendMode: merge
+
+publish:
+  enabled: true
+  environment: production
